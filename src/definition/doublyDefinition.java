@@ -7,6 +7,15 @@ public class doublyDefinition<E> implements adt<E> {
     private Node<E> tail = null;
     private int size = 0;
 
+    private Node<E> getNode(int index) {
+
+        Node<E> response = head;
+        for (int i = 0; i < index && response!=null; i++) {
+            response = response.getNext();
+        }
+        return response;
+    }
+
     private void addFirst(E item) {
 
      if (head == null) {
@@ -20,6 +29,10 @@ public class doublyDefinition<E> implements adt<E> {
          head = newNode;
      }
      size++;
+    }
+
+    private void addAfter(E item) {
+
     }
 
     @Override
