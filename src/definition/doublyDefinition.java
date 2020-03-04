@@ -31,8 +31,20 @@ public class doublyDefinition<E> implements adt<E> {
      size++;
     }
 
-    private void addAfter(E item) {
+    private void addAfter(E item, Node<E> afterNode) {
 
+       Node<E> temp = afterNode.getNext();
+        if (temp == null) {
+            Node<E> newNode = new Node<>(item, temp, afterNode);
+            afterNode.next = newNode;
+            tail = newNode;
+        }
+        else {
+            Node<E> newNode = new Node<>(item, temp, afterNode);
+            afterNode.next = newNode;
+            temp.previous = newNode;
+        }
+        size++;
     }
 
     @Override
