@@ -47,9 +47,22 @@ public class doublyDefinition<E> implements adt<E> {
         size++;
     }
 
+    private void add(int index, E item) {
+
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(Integer.toString(index));
+        }
+        else if (index == 0) {
+            addFirst(item);
+        }
+        else {
+            addAfter(item, getNode(index - 1));
+        }
+    }
+
     @Override
     public void add(E item) {
-
+        add(size, item);
     }
 
     @Override
