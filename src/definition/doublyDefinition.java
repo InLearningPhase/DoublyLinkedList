@@ -3,6 +3,25 @@ import adt.adt;
 
 public class doublyDefinition<E> implements adt<E> {
 
+    private Node<E> head = null;
+    private Node<E> tail = null;
+    private int size = 0;
+
+    private void addFirst(E item) {
+
+     if (head == null) {
+         Node<E> newNode = new Node<>(item, null, null);
+         head = newNode;
+         tail = newNode;
+     }
+     else {
+         Node<E> newNode = new Node<>(item, head, null);
+         head.previous = newNode;
+         head = newNode;
+     }
+     size++;
+    }
+
     @Override
     public void add(E item) {
 
