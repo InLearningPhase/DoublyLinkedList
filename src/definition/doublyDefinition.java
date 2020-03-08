@@ -127,8 +127,18 @@ public class doublyDefinition<E> implements adt<E> {
     }
 
     @Override
-    public void print() {
+    public String toString() {
 
+        StringBuilder stringBuilder = new StringBuilder("[");
+        Node<E> currentNode = head;
+
+        for (int i = 0; i < size && currentNode != null; i++) {
+            currentNode = currentNode.getNext();
+            stringBuilder.append(currentNode.getData());
+            stringBuilder.append(i < size - 1 ? "," : "");
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
     }
 
     private static class Node<E> {

@@ -10,5 +10,4 @@ public interface adt<E> {
 
     void sort();
 
-    void print();
 }
