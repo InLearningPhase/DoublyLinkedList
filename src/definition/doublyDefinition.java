@@ -65,31 +65,37 @@ public class doublyDefinition<E> implements adt<E> {
         add(size, item);
     }
 
-    private Node<E> removeFirst() {
+    private E removeFirst() {
 
-        Node<E> response = head;
-        if (head != null) {
+        E response = null;
+        Node<E> temp = head;
+        if (temp != null) {
             head.getNext().previous = null;
+            response = head.getData();
             head = head.getNext();
             size--;
         }
         return response;
     }
 
-    private Node<E> removeAfter(Node<E> afterNode) {
+    private E removeAfter(Node<E> afterNode) {
 
-       Node<E> response = afterNode.next;
-       if (response.getNext() == null) {
-           response = null;
+        E response = null;
+        Node<E> temp = afterNode.getNext();
+       if (temp.getNext() == null) {
+           afterNode.next = null;
            tail = afterNode;
+           response = temp.getData();
        }
        else {
-           response.getNext().previous = afterNode;
-           response = response.getNext();
+           afterNode.next = temp.getNext();
+           temp.getNext().previous = afterNode;
+           response = temp.getData();
        }
        size--;
        return response;
     }
+
 
     @Override
     public E remove() {
