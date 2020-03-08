@@ -96,10 +96,24 @@ public class doublyDefinition<E> implements adt<E> {
        return response;
     }
 
+    private E remove(int index) {
+
+        E response = null;
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(Integer.toString(index));
+        }
+        else if (index == 0) {
+            response = removeFirst();
+        }
+        else {
+            response = removeAfter(getNode(index - 1));
+        }
+        return response;
+    }
 
     @Override
     public E remove() {
-        return null;
+        return remove(size - 1);
     }
 
     @Override
