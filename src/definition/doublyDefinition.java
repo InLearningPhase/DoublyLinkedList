@@ -1,13 +1,17 @@
 package definition;
 import adt.adt;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class doublyDefinition<E> implements adt<E> {
 
     private Node<E> head = null;
     private Node<E> tail = null;
-    private int size = 0;
+     int size = 0;
 
-    private Node<E> getNode(int index) {
+    public Node<E> getNode(int index) {
 
         Node<E> response = head;
         for (int i = 0; i < index && response!=null; i++) {
@@ -65,7 +69,7 @@ public class doublyDefinition<E> implements adt<E> {
         add(size, item);
     }
 
-    private E removeFirst() {
+    public E removeFirst() {
 
         E response = null;
         Node<E> temp = head;
@@ -78,7 +82,7 @@ public class doublyDefinition<E> implements adt<E> {
         return response;
     }
 
-    private E removeAfter(Node<E> afterNode) {
+    public E removeAfter(Node<E> afterNode) {
 
         E response = null;
         Node<E> temp = afterNode.getNext();
@@ -118,7 +122,16 @@ public class doublyDefinition<E> implements adt<E> {
 
     @Override
     public int search(E item) {
-        return 0;
+        int response = -1;
+        Node<E> temp = head;
+        for (int i = 0; i < size; i++) {
+            if (temp.getData().equals(item)) {
+                response = i;
+                break;
+            }
+            temp = temp.getNext();
+        }
+        return response;
     }
 
     @Override
@@ -129,13 +142,14 @@ public class doublyDefinition<E> implements adt<E> {
     @Override
     public String toString() {
 
+
         StringBuilder stringBuilder = new StringBuilder("[");
         Node<E> currentNode = head;
 
         for (int i = 0; i < size && currentNode != null; i++) {
-            currentNode = currentNode.getNext();
             stringBuilder.append(currentNode.getData());
             stringBuilder.append(i < size - 1 ? "," : "");
+            currentNode = currentNode.getNext();
         }
         stringBuilder.append("]");
         return stringBuilder.toString();
